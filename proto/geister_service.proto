@@ -3,26 +3,26 @@ syntax = "proto3";
 option go_package = "pkg/geister";
 
 service Geister{
-    rpc Start (StartRequest) return (StartResponse) {}
-    rpc GetGameState (GetGameStateRequest) return (GetGameStateResponse) {}
-    rpc UpdateGameState (UpdateGameStateRequest) return (UpdateGameStateResponse) {}
+    rpc Start (StartRequest) returns (StartResponse) {}
+    rpc GetGameState (GetGameStateRequest) returns (GetGameStateResponse) {}
+    rpc UpdateGameState (UpdateGameStateRequest) returns (UpdateGameStateResponse) {}
 }
 
 message Table{
     message Piece{
         string owner = 1;
         string piece_type = 2;
-        repeated int position = 3;
+        repeated uint32 position = 3;
     }
     message Player{
         string player_uuid = 1;
         string name = 2;
         map<string, Piece> pieces = 3;
-        int pickedRedPiecesCount = 4;
-        int pickedBluePiecesCount = 5;
+        uint32 pickedRedPiecesCount = 4;
+        uint32 pickedBluePiecesCount = 5;
     }
     message Block{
-        repeated int address = 1;
+        repeated uint32 address = 1;
         optional Piece piece = 2;
     }
     message BlockRow{
@@ -31,7 +31,7 @@ message Table{
     string table_uuid = 1;
     repeated Player players = 2;
     repeated BlockRow board = 3;
-    int turn = 4;
+    uint32 turn = 4;
 }
 
 message StartRequest{
