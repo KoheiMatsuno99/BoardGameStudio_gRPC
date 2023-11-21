@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+option go_package = "pkg/geister";
+
+service Geister{
+    rpc Start (StartRequest) return (StartResponse) {}
+    rpc GetGameState (GetGameStateRequest) return (GetGameStateResponse) {}
+    rpc UpdateGameState (UpdateGameStateRequest) return (UpdateGameStateResponse) {}
+}
+
+message Table{
+    message Piece{
+        string owner = 1;
+        string piece_type = 2;
+        repeated int position = 3;
+    }
+    message Player{
+        string player_uuid = 1;
+        string name = 2;
+        map<string, Piece> pieces = 3;
+        int pickedRedPiecesCount = 4;
+        int pickedBluePiecesCount = 5;
+    }
+    message Block{
+        repeated int address = 1;
+        optional Piece piece = 2;
+    }
+    message BlockRow{
+        repeated Block blocks = 1;
+    }
+    string table_uuid = 1;
+    repeated Player players = 2;
+    repeated BlockRow board = 3;
+    int turn = 4;
+}
+
+message StartRequest{
+    string player1_name = 1;
+    string player2_name = 2; 
+}
+
+message StartResponse{
+    Table game_state = 1;
+}
+
+message GetGameStateRequest{
+    string table_uuid = 1;
+}
+
+message GetGameStateResponse{
+    Table game_state = 1;
+}
+
+message UpdateGameStateRequest{
+    Table game_state = 1;
+}
+
+message UpdateGameStateResponse{}
