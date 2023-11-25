@@ -1,4 +1,4 @@
-package main
+package server
 
 import (
 	"fmt"
@@ -6,6 +6,8 @@ import (
 	"net"
 	"os"
 	"os/signal"
+
+	geisterpb "github.com/KoheiMatsuno99/BoardGameStudio_gRPC/pkg/geister/proto"
 
 	"google.golang.org/grpc"
 )
@@ -18,6 +20,8 @@ func main() {
 	}
 	// gRPCサーバーを作成
 	s := grpc.NewServer()
+	// gRPCサーバーにGeisterServerを登録
+	geisterpb.RegisterGeisterServer(s, &GeisterServer{})
 	// gRPCサーバーを指定のポートで起動
 	go func() {
 		log.Printf("start gRPC server port: %v", port)

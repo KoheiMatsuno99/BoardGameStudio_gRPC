@@ -1,4 +1,4 @@
-module gamegrpc
+module github.com/KoheiMatsuno99/BoardGameStudio_gRPC
 
 go 1.21.4
 
