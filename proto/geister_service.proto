@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "pkg/geister";
+option go_package = "pkg/geister/proto";
 
 service Geister{
     rpc Start (StartRequest) returns (StartResponse) {}

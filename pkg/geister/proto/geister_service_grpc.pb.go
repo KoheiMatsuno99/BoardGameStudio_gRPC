@@ -4,7 +4,7 @@
 // - protoc             v4.25.1
 // source: proto/geister_service.proto
 
-package geister
+package proto
 
 import (
 	context "context"
