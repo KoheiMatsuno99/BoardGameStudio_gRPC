@@ -2,7 +2,7 @@ syntax = "proto3";
 
 option go_package = "pkg/geister/proto";
 
-service Geister{
+service GeisterService{
     rpc Start (StartRequest) returns (StartResponse);
     rpc GetGameState (GetGameStateRequest) returns (GetGameStateResponse);
     rpc UpdateGameState (UpdateGameStateRequest) returns (UpdateGameStateResponse);

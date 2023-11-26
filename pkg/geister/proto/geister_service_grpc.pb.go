@@ -18,158 +18,158 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// GeisterClient is the client API for Geister service.
+// GeisterServiceClient is the client API for GeisterService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type GeisterClient interface {
+type GeisterServiceClient interface {
 	Start(ctx context.Context, in *StartRequest, opts ...grpc.CallOption) (*StartResponse, error)
 	GetGameState(ctx context.Context, in *GetGameStateRequest, opts ...grpc.CallOption) (*GetGameStateResponse, error)
 	UpdateGameState(ctx context.Context, in *UpdateGameStateRequest, opts ...grpc.CallOption) (*UpdateGameStateResponse, error)
 }
 
-type geisterClient struct {
+type geisterServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewGeisterClient(cc grpc.ClientConnInterface) GeisterClient {
-	return &geisterClient{cc}
+func NewGeisterServiceClient(cc grpc.ClientConnInterface) GeisterServiceClient {
+	return &geisterServiceClient{cc}
 }
 
-func (c *geisterClient) Start(ctx context.Context, in *StartRequest, opts ...grpc.CallOption) (*StartResponse, error) {
+func (c *geisterServiceClient) Start(ctx context.Context, in *StartRequest, opts ...grpc.CallOption) (*StartResponse, error) {
 	out := new(StartResponse)
-	err := c.cc.Invoke(ctx, "/Geister/Start", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/GeisterService/Start", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *geisterClient) GetGameState(ctx context.Context, in *GetGameStateRequest, opts ...grpc.CallOption) (*GetGameStateResponse, error) {
+func (c *geisterServiceClient) GetGameState(ctx context.Context, in *GetGameStateRequest, opts ...grpc.CallOption) (*GetGameStateResponse, error) {
 	out := new(GetGameStateResponse)
-	err := c.cc.Invoke(ctx, "/Geister/GetGameState", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/GeisterService/GetGameState", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *geisterClient) UpdateGameState(ctx context.Context, in *UpdateGameStateRequest, opts ...grpc.CallOption) (*UpdateGameStateResponse, error) {
+func (c *geisterServiceClient) UpdateGameState(ctx context.Context, in *UpdateGameStateRequest, opts ...grpc.CallOption) (*UpdateGameStateResponse, error) {
 	out := new(UpdateGameStateResponse)
-	err := c.cc.Invoke(ctx, "/Geister/UpdateGameState", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/GeisterService/UpdateGameState", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// GeisterServer is the server API for Geister service.
-// All implementations must embed UnimplementedGeisterServer
+// GeisterServiceServer is the server API for GeisterService service.
+// All implementations must embed UnimplementedGeisterServiceServer
 // for forward compatibility
-type GeisterServer interface {
+type GeisterServiceServer interface {
 	Start(context.Context, *StartRequest) (*StartResponse, error)
 	GetGameState(context.Context, *GetGameStateRequest) (*GetGameStateResponse, error)
 	UpdateGameState(context.Context, *UpdateGameStateRequest) (*UpdateGameStateResponse, error)
-	mustEmbedUnimplementedGeisterServer()
+	mustEmbedUnimplementedGeisterServiceServer()
 }
 
-// UnimplementedGeisterServer must be embedded to have forward compatible implementations.
-type UnimplementedGeisterServer struct {
+// UnimplementedGeisterServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedGeisterServiceServer struct {
 }
 
-func (UnimplementedGeisterServer) Start(context.Context, *StartRequest) (*StartResponse, error) {
+func (UnimplementedGeisterServiceServer) Start(context.Context, *StartRequest) (*StartResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Start not implemented")
 }
-func (UnimplementedGeisterServer) GetGameState(context.Context, *GetGameStateRequest) (*GetGameStateResponse, error) {
+func (UnimplementedGeisterServiceServer) GetGameState(context.Context, *GetGameStateRequest) (*GetGameStateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGameState not implemented")
 }
-func (UnimplementedGeisterServer) UpdateGameState(context.Context, *UpdateGameStateRequest) (*UpdateGameStateResponse, error) {
+func (UnimplementedGeisterServiceServer) UpdateGameState(context.Context, *UpdateGameStateRequest) (*UpdateGameStateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateGameState not implemented")
 }
-func (UnimplementedGeisterServer) mustEmbedUnimplementedGeisterServer() {}
+func (UnimplementedGeisterServiceServer) mustEmbedUnimplementedGeisterServiceServer() {}
 
-// UnsafeGeisterServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to GeisterServer will
+// UnsafeGeisterServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to GeisterServiceServer will
 // result in compilation errors.
-type UnsafeGeisterServer interface {
-	mustEmbedUnimplementedGeisterServer()
+type UnsafeGeisterServiceServer interface {
+	mustEmbedUnimplementedGeisterServiceServer()
 }
 
-func RegisterGeisterServer(s grpc.ServiceRegistrar, srv GeisterServer) {
-	s.RegisterService(&Geister_ServiceDesc, srv)
+func RegisterGeisterServiceServer(s grpc.ServiceRegistrar, srv GeisterServiceServer) {
+	s.RegisterService(&GeisterService_ServiceDesc, srv)
 }
 
-func _Geister_Start_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GeisterService_Start_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(StartRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GeisterServer).Start(ctx, in)
+		return srv.(GeisterServiceServer).Start(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/Geister/Start",
+		FullMethod: "/GeisterService/Start",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GeisterServer).Start(ctx, req.(*StartRequest))
+		return srv.(GeisterServiceServer).Start(ctx, req.(*StartRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Geister_GetGameState_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GeisterService_GetGameState_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetGameStateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GeisterServer).GetGameState(ctx, in)
+		return srv.(GeisterServiceServer).GetGameState(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/Geister/GetGameState",
+		FullMethod: "/GeisterService/GetGameState",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GeisterServer).GetGameState(ctx, req.(*GetGameStateRequest))
+		return srv.(GeisterServiceServer).GetGameState(ctx, req.(*GetGameStateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Geister_UpdateGameState_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GeisterService_UpdateGameState_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateGameStateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GeisterServer).UpdateGameState(ctx, in)
+		return srv.(GeisterServiceServer).UpdateGameState(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/Geister/UpdateGameState",
+		FullMethod: "/GeisterService/UpdateGameState",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GeisterServer).UpdateGameState(ctx, req.(*UpdateGameStateRequest))
+		return srv.(GeisterServiceServer).UpdateGameState(ctx, req.(*UpdateGameStateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// Geister_ServiceDesc is the grpc.ServiceDesc for Geister service.
+// GeisterService_ServiceDesc is the grpc.ServiceDesc for GeisterService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Geister_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "Geister",
-	HandlerType: (*GeisterServer)(nil),
+var GeisterService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "GeisterService",
+	HandlerType: (*GeisterServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Start",
-			Handler:    _Geister_Start_Handler,
+			Handler:    _GeisterService_Start_Handler,
 		},
 		{
 			MethodName: "GetGameState",
-			Handler:    _Geister_GetGameState_Handler,
+			Handler:    _GeisterService_GetGameState_Handler,
 		},
 		{
 			MethodName: "UpdateGameState",
-			Handler:    _Geister_UpdateGameState_Handler,
+			Handler:    _GeisterService_UpdateGameState_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
