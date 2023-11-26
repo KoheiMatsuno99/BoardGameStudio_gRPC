@@ -3,9 +3,9 @@ syntax = "proto3";
 option go_package = "pkg/geister/proto";
 
 service Geister{
-    rpc Start (StartRequest) returns (StartResponse) {}
-    rpc GetGameState (GetGameStateRequest) returns (GetGameStateResponse) {}
-    rpc UpdateGameState (UpdateGameStateRequest) returns (UpdateGameStateResponse) {}
+    rpc Start (StartRequest) returns (StartResponse);
+    rpc GetGameState (GetGameStateRequest) returns (GetGameStateResponse);
+    rpc UpdateGameState (UpdateGameStateRequest) returns (UpdateGameStateResponse);
 }
 
 message Table{
