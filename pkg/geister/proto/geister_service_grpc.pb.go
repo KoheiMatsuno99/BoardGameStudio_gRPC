@@ -24,7 +24,9 @@ const _ = grpc.SupportPackageIsVersion7
 type GeisterServiceClient interface {
 	Start(ctx context.Context, in *StartRequest, opts ...grpc.CallOption) (*StartResponse, error)
 	GetGameState(ctx context.Context, in *GetGameStateRequest, opts ...grpc.CallOption) (*GetGameStateResponse, error)
-	UpdateGameState(ctx context.Context, in *UpdateGameStateRequest, opts ...grpc.CallOption) (*UpdateGameStateResponse, error)
+	UpdateGameStateByPlayerMove(ctx context.Context, in *UpdateGameStateByPlayerMoveRequest, opts ...grpc.CallOption) (*UpdateGameStateByPlayerMoveResponse, error)
+	UpdateGameStateByCpuMove(ctx context.Context, in *UpdateGameStateByCpuMoveRequest, opts ...grpc.CallOption) (*UpdateGameStateByCpuMoveResponse, error)
+	DeleteGameStateWhenGameIsOver(ctx context.Context, in *DeleteGameStateWhenGameIsOverRequest, opts ...grpc.CallOption) (*DeleteGameStateWhenGameIsOverResponse, error)
 }
 
 type geisterServiceClient struct {
@@ -53,9 +55,27 @@ func (c *geisterServiceClient) GetGameState(ctx context.Context, in *GetGameStat
 	return out, nil
 }
 
-func (c *geisterServiceClient) UpdateGameState(ctx context.Context, in *UpdateGameStateRequest, opts ...grpc.CallOption) (*UpdateGameStateResponse, error) {
-	out := new(UpdateGameStateResponse)
-	err := c.cc.Invoke(ctx, "/GeisterService/UpdateGameState", in, out, opts...)
+func (c *geisterServiceClient) UpdateGameStateByPlayerMove(ctx context.Context, in *UpdateGameStateByPlayerMoveRequest, opts ...grpc.CallOption) (*UpdateGameStateByPlayerMoveResponse, error) {
+	out := new(UpdateGameStateByPlayerMoveResponse)
+	err := c.cc.Invoke(ctx, "/GeisterService/UpdateGameStateByPlayerMove", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *geisterServiceClient) UpdateGameStateByCpuMove(ctx context.Context, in *UpdateGameStateByCpuMoveRequest, opts ...grpc.CallOption) (*UpdateGameStateByCpuMoveResponse, error) {
+	out := new(UpdateGameStateByCpuMoveResponse)
+	err := c.cc.Invoke(ctx, "/GeisterService/UpdateGameStateByCpuMove", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *geisterServiceClient) DeleteGameStateWhenGameIsOver(ctx context.Context, in *DeleteGameStateWhenGameIsOverRequest, opts ...grpc.CallOption) (*DeleteGameStateWhenGameIsOverResponse, error) {
+	out := new(DeleteGameStateWhenGameIsOverResponse)
+	err := c.cc.Invoke(ctx, "/GeisterService/DeleteGameStateWhenGameIsOver", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -68,7 +88,9 @@ func (c *geisterServiceClient) UpdateGameState(ctx context.Context, in *UpdateGa
 type GeisterServiceServer interface {
 	Start(context.Context, *StartRequest) (*StartResponse, error)
 	GetGameState(context.Context, *GetGameStateRequest) (*GetGameStateResponse, error)
-	UpdateGameState(context.Context, *UpdateGameStateRequest) (*UpdateGameStateResponse, error)
+	UpdateGameStateByPlayerMove(context.Context, *UpdateGameStateByPlayerMoveRequest) (*UpdateGameStateByPlayerMoveResponse, error)
+	UpdateGameStateByCpuMove(context.Context, *UpdateGameStateByCpuMoveRequest) (*UpdateGameStateByCpuMoveResponse, error)
+	DeleteGameStateWhenGameIsOver(context.Context, *DeleteGameStateWhenGameIsOverRequest) (*DeleteGameStateWhenGameIsOverResponse, error)
 	mustEmbedUnimplementedGeisterServiceServer()
 }
 
@@ -82,8 +104,14 @@ func (UnimplementedGeisterServiceServer) Start(context.Context, *StartRequest) (
 func (UnimplementedGeisterServiceServer) GetGameState(context.Context, *GetGameStateRequest) (*GetGameStateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGameState not implemented")
 }
-func (UnimplementedGeisterServiceServer) UpdateGameState(context.Context, *UpdateGameStateRequest) (*UpdateGameStateResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateGameState not implemented")
+func (UnimplementedGeisterServiceServer) UpdateGameStateByPlayerMove(context.Context, *UpdateGameStateByPlayerMoveRequest) (*UpdateGameStateByPlayerMoveResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateGameStateByPlayerMove not implemented")
+}
+func (UnimplementedGeisterServiceServer) UpdateGameStateByCpuMove(context.Context, *UpdateGameStateByCpuMoveRequest) (*UpdateGameStateByCpuMoveResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateGameStateByCpuMove not implemented")
+}
+func (UnimplementedGeisterServiceServer) DeleteGameStateWhenGameIsOver(context.Context, *DeleteGameStateWhenGameIsOverRequest) (*DeleteGameStateWhenGameIsOverResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteGameStateWhenGameIsOver not implemented")
 }
 func (UnimplementedGeisterServiceServer) mustEmbedUnimplementedGeisterServiceServer() {}
 
@@ -134,20 +162,56 @@ func _GeisterService_GetGameState_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GeisterService_UpdateGameState_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateGameStateRequest)
+func _GeisterService_UpdateGameStateByPlayerMove_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateGameStateByPlayerMoveRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GeisterServiceServer).UpdateGameState(ctx, in)
+		return srv.(GeisterServiceServer).UpdateGameStateByPlayerMove(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/GeisterService/UpdateGameState",
+		FullMethod: "/GeisterService/UpdateGameStateByPlayerMove",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GeisterServiceServer).UpdateGameState(ctx, req.(*UpdateGameStateRequest))
+		return srv.(GeisterServiceServer).UpdateGameStateByPlayerMove(ctx, req.(*UpdateGameStateByPlayerMoveRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GeisterService_UpdateGameStateByCpuMove_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateGameStateByCpuMoveRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GeisterServiceServer).UpdateGameStateByCpuMove(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/GeisterService/UpdateGameStateByCpuMove",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GeisterServiceServer).UpdateGameStateByCpuMove(ctx, req.(*UpdateGameStateByCpuMoveRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GeisterService_DeleteGameStateWhenGameIsOver_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteGameStateWhenGameIsOverRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GeisterServiceServer).DeleteGameStateWhenGameIsOver(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/GeisterService/DeleteGameStateWhenGameIsOver",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GeisterServiceServer).DeleteGameStateWhenGameIsOver(ctx, req.(*DeleteGameStateWhenGameIsOverRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -168,8 +232,16 @@ var GeisterService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _GeisterService_GetGameState_Handler,
 		},
 		{
-			MethodName: "UpdateGameState",
-			Handler:    _GeisterService_UpdateGameState_Handler,
+			MethodName: "UpdateGameStateByPlayerMove",
+			Handler:    _GeisterService_UpdateGameStateByPlayerMove_Handler,
+		},
+		{
+			MethodName: "UpdateGameStateByCpuMove",
+			Handler:    _GeisterService_UpdateGameStateByCpuMove_Handler,
+		},
+		{
+			MethodName: "DeleteGameStateWhenGameIsOver",
+			Handler:    _GeisterService_DeleteGameStateWhenGameIsOver_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

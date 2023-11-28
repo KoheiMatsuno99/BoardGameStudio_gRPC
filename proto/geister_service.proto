@@ -5,29 +5,35 @@ option go_package = "pkg/geister/proto";
 service GeisterService{
     rpc Start (StartRequest) returns (StartResponse);
     rpc GetGameState (GetGameStateRequest) returns (GetGameStateResponse);
-    rpc UpdateGameState (UpdateGameStateRequest) returns (UpdateGameStateResponse);
+    rpc UpdateGameStateByPlayerMove (UpdateGameStateByPlayerMoveRequest) returns (UpdateGameStateByPlayerMoveResponse);
+    rpc UpdateGameStateByCpuMove (UpdateGameStateByCpuMoveRequest) returns (UpdateGameStateByCpuMoveResponse);
+    rpc DeleteGameStateWhenGameIsOver (DeleteGameStateWhenGameIsOverRequest) returns (DeleteGameStateWhenGameIsOverResponse);
+}
+
+message Piece{
+    string owner = 1;
+    string piece_type = 2;
+    repeated uint32 position = 3;
+}
+
+message Player{
+    string player_uuid = 1;
+    string name = 2;
+    map<string, Piece> pieces = 3;
+    uint32 pickedRedPiecesCount = 4;
+    uint32 pickedBluePiecesCount = 5;
+}
+
+message Block{
+    repeated uint32 address = 1;
+    optional Piece piece = 2;
+}
+
+message BlockRow{
+    repeated Block blocks = 1;
 }
 
 message Table{
-    message Piece{
-        string owner = 1;
-        string piece_type = 2;
-        repeated uint32 position = 3;
-    }
-    message Player{
-        string player_uuid = 1;
-        string name = 2;
-        map<string, Piece> pieces = 3;
-        uint32 pickedRedPiecesCount = 4;
-        uint32 pickedBluePiecesCount = 5;
-    }
-    message Block{
-        repeated uint32 address = 1;
-        optional Piece piece = 2;
-    }
-    message BlockRow{
-        repeated Block blocks = 1;
-    }
     string table_uuid = 1;
     repeated Player players = 2;
     repeated BlockRow board = 3;
@@ -51,8 +57,28 @@ message GetGameStateResponse{
     Table game_state = 1;
 }
 
-message UpdateGameStateRequest{
-    Table game_state = 1;
+message UpdateGameStateByPlayerMoveRequest{
+    string table_uuid = 1;
+    Piece player_piece = 2;
+    Block dest = 3;
 }
 
-message UpdateGameStateResponse{}
+message UpdateGameStateByPlayerMoveResponse{
+
+}
+
+message UpdateGameStateByCpuMoveRequest{
+    string table_uuid = 1;
+}
+
+message UpdateGameStateByCpuMoveResponse{
+
+}
+
+message DeleteGameStateWhenGameIsOverRequest{
+    string table_uuid = 1;
+}
+
+message DeleteGameStateWhenGameIsOverResponse{
+    
+}
