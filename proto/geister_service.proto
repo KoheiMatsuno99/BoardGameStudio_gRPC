@@ -59,7 +59,7 @@ message GetGameStateResponse{
 
 message UpdateGameStateByPlayerMoveRequest{
     string table_uuid = 1;
-    Piece player_piece = 2;
+    string piece_key = 2;
     Block dest = 3;
 }
 
