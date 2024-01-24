@@ -5,8 +5,8 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
-  "main": "pkg/geister/client/dist/index.js",
-  "typings": "pkg/geister/client/dist/index.d.ts",
+  "main": "pkg/geister/dist/index.js",
+  "typings": "pkg/geister/dist/index.d.ts",
   "devDependencies": {
     "can-npm-publish": "1.3.6",
     "fs-extra": "^11.2.0"

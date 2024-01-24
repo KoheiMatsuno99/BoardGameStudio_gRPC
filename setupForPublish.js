@@ -2,7 +2,7 @@ const fs = require("fs-extra");
 
 // コピーするファイルやディレクトリのパスを設定
 const filesToCopy = [
-  { src: "pkg/geister/client/proto", dest: "pkg/geister/client/dist/proto" },
+  { src: "pkg/geister/client", dest: "pkg/geister/dist" },
   // 必要に応じて他のファイルやディレクトリもここに追加
 ];
 
