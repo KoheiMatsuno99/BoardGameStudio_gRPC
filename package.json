@@ -1,5 +1,5 @@
 {
-  "name": "boardgamestudio-grpc",
+  "name": "@koheimatsuno99/boardgamestudio-grpc",
   "version": "1.0.0",
   "repository": "git://github.com/KoheiMatsuno99/BoardGameStudio_gRPC.git",
   "publishConfig": {
