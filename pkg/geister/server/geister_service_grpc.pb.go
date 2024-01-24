@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v4.25.1
-// source: proto/geister_service.proto
+// source: geister_service.proto
 
 package proto
 
@@ -245,5 +245,5 @@ var GeisterService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "proto/geister_service.proto",
+	Metadata: "geister_service.proto",
 }

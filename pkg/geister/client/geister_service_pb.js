@@ -1,4 +1,4 @@
-// source: proto/geister_service.proto
+// source: geister_service.proto
 /**
  * @fileoverview
  * @enhanceable

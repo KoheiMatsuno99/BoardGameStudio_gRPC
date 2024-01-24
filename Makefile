@@ -9,4 +9,4 @@ protoc:
 		--go-grpc_out=pkg/geister/server --go-grpc_opt=paths=source_relative \
 		--js_out=import_style=commonjs:pkg/geister/client \
 		--grpc-web_out=import_style=commonjs+dts,mode=grpcwebtext:pkg/geister/client \
-		proto/*.proto
+		*.proto

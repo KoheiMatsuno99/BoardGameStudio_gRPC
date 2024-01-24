@@ -8,7 +8,7 @@
 // versions:
 // 	protoc-gen-grpc-web v1.5.0
 // 	protoc              v4.25.1
-// source: proto/geister_service.proto
+// source: geister_service.proto
 
 
 /* eslint-disable */

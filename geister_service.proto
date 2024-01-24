@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+option go_package = "pkg/geister/proto";
+
+service GeisterService{
+    rpc Start (StartRequest) returns (StartResponse);
+    rpc GetGameState (GetGameStateRequest) returns (GetGameStateResponse);
+    rpc UpdateGameStateByPlayerMove (UpdateGameStateByPlayerMoveRequest) returns (UpdateGameStateByPlayerMoveResponse);
+    rpc UpdateGameStateByCpuMove (UpdateGameStateByCpuMoveRequest) returns (UpdateGameStateByCpuMoveResponse);
+    rpc DeleteGameStateWhenGameIsOver (DeleteGameStateWhenGameIsOverRequest) returns (DeleteGameStateWhenGameIsOverResponse);
+}
+
+message Piece{
+    string owner = 1;
+    string piece_type = 2;
+    repeated uint32 position = 3;
+}
+
+message Player{
+    string player_uuid = 1;
+    string name = 2;
+    map<string, Piece> pieces = 3;
+    uint32 pickedRedPiecesCount = 4;
+    uint32 pickedBluePiecesCount = 5;
+}
+
+message Block{
+    repeated uint32 address = 1;
+    optional Piece piece = 2;
+}
+
+message BlockRow{
+    repeated Block blocks = 1;
+}
+
+message Table{
+    string table_uuid = 1;
+    repeated Player players = 2;
+    repeated BlockRow board = 3;
+    uint32 turn = 4;
+}
+
+message StartRequest{
+    string player1_name = 1;
+    string player2_name = 2; 
+}
+
+message StartResponse{
+    Table game_state = 1;
+}
+
+message GetGameStateRequest{
+    string table_uuid = 1;
+}
+
+message GetGameStateResponse{
+    Table game_state = 1;
+}
+
+message UpdateGameStateByPlayerMoveRequest{
+    string table_uuid = 1;
+    string piece_key = 2;
+    Block dest = 3;
+}
+
+message UpdateGameStateByPlayerMoveResponse{
+
+}
+
+message UpdateGameStateByCpuMoveRequest{
+    string table_uuid = 1;
+}
+
+message UpdateGameStateByCpuMoveResponse{
+
+}
+
+message DeleteGameStateWhenGameIsOverRequest{
+    string table_uuid = 1;
+}
+
+message DeleteGameStateWhenGameIsOverResponse{
+    
+}
