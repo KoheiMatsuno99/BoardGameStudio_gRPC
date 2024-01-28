@@ -212,9 +212,6 @@ export namespace NotifyGamePreparationCompleteRequest {
 }
 
 export class NotifyGamePreparationCompleteResponse extends jspb.Message {
-  getTableUuid(): string;
-  setTableUuid(value: string): NotifyGamePreparationCompleteResponse;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): NotifyGamePreparationCompleteResponse.AsObject;
   static toObject(includeInstance: boolean, msg: NotifyGamePreparationCompleteResponse): NotifyGamePreparationCompleteResponse.AsObject;
@@ -225,7 +222,6 @@ export class NotifyGamePreparationCompleteResponse extends jspb.Message {
 
 export namespace NotifyGamePreparationCompleteResponse {
   export type AsObject = {
-    tableUuid: string,
   }
 }
 

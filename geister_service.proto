@@ -55,7 +55,7 @@ message NotifyGamePreparationCompleteRequest{
 }
 
 message NotifyGamePreparationCompleteResponse{
-    string table_uuid = 1;
+    
 }
 
 message GetGameStateRequest{
