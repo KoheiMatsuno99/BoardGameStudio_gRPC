@@ -15,13 +15,6 @@ export class GeisterServiceClient {
                response: geister_service_pb.StartResponse) => void
   ): grpcWeb.ClientReadableStream<geister_service_pb.StartResponse>;
 
-  notifyGamePreparationComplete(
-    request: geister_service_pb.NotifyGamePreparationCompleteRequest,
-    metadata: grpcWeb.Metadata | undefined,
-    callback: (err: grpcWeb.RpcError,
-               response: geister_service_pb.NotifyGamePreparationCompleteResponse) => void
-  ): grpcWeb.ClientReadableStream<geister_service_pb.NotifyGamePreparationCompleteResponse>;
-
   getGameState(
     request: geister_service_pb.GetGameStateRequest,
     metadata: grpcWeb.Metadata | undefined,
@@ -61,11 +54,6 @@ export class GeisterServicePromiseClient {
     request: geister_service_pb.StartRequest,
     metadata?: grpcWeb.Metadata
   ): Promise<geister_service_pb.StartResponse>;
-
-  notifyGamePreparationComplete(
-    request: geister_service_pb.NotifyGamePreparationCompleteRequest,
-    metadata?: grpcWeb.Metadata
-  ): Promise<geister_service_pb.NotifyGamePreparationCompleteResponse>;
 
   getGameState(
     request: geister_service_pb.GetGameStateRequest,

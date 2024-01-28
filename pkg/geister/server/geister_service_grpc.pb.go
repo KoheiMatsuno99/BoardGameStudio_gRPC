@@ -23,6 +23,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type GeisterServiceClient interface {
 	Start(ctx context.Context, in *StartRequest, opts ...grpc.CallOption) (*StartResponse, error)
+	NotifyGamePreparationComplete(ctx context.Context, in *NotifyGamePreparationCompleteRequest, opts ...grpc.CallOption) (*NotifyGamePreparationCompleteResponse, error)
 	GetGameState(ctx context.Context, in *GetGameStateRequest, opts ...grpc.CallOption) (*GetGameStateResponse, error)
 	UpdateGameStateByPlayerMove(ctx context.Context, in *UpdateGameStateByPlayerMoveRequest, opts ...grpc.CallOption) (*UpdateGameStateByPlayerMoveResponse, error)
 	UpdateGameStateByCpuMove(ctx context.Context, in *UpdateGameStateByCpuMoveRequest, opts ...grpc.CallOption) (*UpdateGameStateByCpuMoveResponse, error)
@@ -40,6 +41,15 @@ func NewGeisterServiceClient(cc grpc.ClientConnInterface) GeisterServiceClient {
 func (c *geisterServiceClient) Start(ctx context.Context, in *StartRequest, opts ...grpc.CallOption) (*StartResponse, error) {
 	out := new(StartResponse)
 	err := c.cc.Invoke(ctx, "/GeisterService/Start", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *geisterServiceClient) NotifyGamePreparationComplete(ctx context.Context, in *NotifyGamePreparationCompleteRequest, opts ...grpc.CallOption) (*NotifyGamePreparationCompleteResponse, error) {
+	out := new(NotifyGamePreparationCompleteResponse)
+	err := c.cc.Invoke(ctx, "/GeisterService/NotifyGamePreparationComplete", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -87,6 +97,7 @@ func (c *geisterServiceClient) DeleteGameStateWhenGameIsOver(ctx context.Context
 // for forward compatibility
 type GeisterServiceServer interface {
 	Start(context.Context, *StartRequest) (*StartResponse, error)
+	NotifyGamePreparationComplete(context.Context, *NotifyGamePreparationCompleteRequest) (*NotifyGamePreparationCompleteResponse, error)
 	GetGameState(context.Context, *GetGameStateRequest) (*GetGameStateResponse, error)
 	UpdateGameStateByPlayerMove(context.Context, *UpdateGameStateByPlayerMoveRequest) (*UpdateGameStateByPlayerMoveResponse, error)
 	UpdateGameStateByCpuMove(context.Context, *UpdateGameStateByCpuMoveRequest) (*UpdateGameStateByCpuMoveResponse, error)
@@ -100,6 +111,9 @@ type UnimplementedGeisterServiceServer struct {
 
 func (UnimplementedGeisterServiceServer) Start(context.Context, *StartRequest) (*StartResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Start not implemented")
+}
+func (UnimplementedGeisterServiceServer) NotifyGamePreparationComplete(context.Context, *NotifyGamePreparationCompleteRequest) (*NotifyGamePreparationCompleteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method NotifyGamePreparationComplete not implemented")
 }
 func (UnimplementedGeisterServiceServer) GetGameState(context.Context, *GetGameStateRequest) (*GetGameStateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGameState not implemented")
@@ -140,6 +154,24 @@ func _GeisterService_Start_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(GeisterServiceServer).Start(ctx, req.(*StartRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GeisterService_NotifyGamePreparationComplete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NotifyGamePreparationCompleteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GeisterServiceServer).NotifyGamePreparationComplete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/GeisterService/NotifyGamePreparationComplete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GeisterServiceServer).NotifyGamePreparationComplete(ctx, req.(*NotifyGamePreparationCompleteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -226,6 +258,10 @@ var GeisterService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Start",
 			Handler:    _GeisterService_Start_Handler,
+		},
+		{
+			MethodName: "NotifyGamePreparationComplete",
+			Handler:    _GeisterService_NotifyGamePreparationComplete_Handler,
 		},
 		{
 			MethodName: "GetGameState",

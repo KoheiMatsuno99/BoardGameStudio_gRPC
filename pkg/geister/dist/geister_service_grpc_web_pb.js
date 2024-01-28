@@ -137,67 +137,6 @@ proto.GeisterServicePromiseClient.prototype.start =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.NotifyGamePreparationCompleteRequest,
- *   !proto.NotifyGamePreparationCompleteResponse>}
- */
-const methodDescriptor_GeisterService_NotifyGamePreparationComplete = new grpc.web.MethodDescriptor(
-  '/GeisterService/NotifyGamePreparationComplete',
-  grpc.web.MethodType.UNARY,
-  proto.NotifyGamePreparationCompleteRequest,
-  proto.NotifyGamePreparationCompleteResponse,
-  /**
-   * @param {!proto.NotifyGamePreparationCompleteRequest} request
-   * @return {!Uint8Array}
-   */
-  function(request) {
-    return request.serializeBinary();
-  },
-  proto.NotifyGamePreparationCompleteResponse.deserializeBinary
-);
-
-
-/**
- * @param {!proto.NotifyGamePreparationCompleteRequest} request The
- *     request proto
- * @param {?Object<string, string>} metadata User defined
- *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.NotifyGamePreparationCompleteResponse)}
- *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.NotifyGamePreparationCompleteResponse>|undefined}
- *     The XHR Node Readable Stream
- */
-proto.GeisterServiceClient.prototype.notifyGamePreparationComplete =
-    function(request, metadata, callback) {
-  return this.client_.rpcCall(this.hostname_ +
-      '/GeisterService/NotifyGamePreparationComplete',
-      request,
-      metadata || {},
-      methodDescriptor_GeisterService_NotifyGamePreparationComplete,
-      callback);
-};
-
-
-/**
- * @param {!proto.NotifyGamePreparationCompleteRequest} request The
- *     request proto
- * @param {?Object<string, string>=} metadata User defined
- *     call metadata
- * @return {!Promise<!proto.NotifyGamePreparationCompleteResponse>}
- *     Promise that resolves to the response
- */
-proto.GeisterServicePromiseClient.prototype.notifyGamePreparationComplete =
-    function(request, metadata) {
-  return this.client_.unaryCall(this.hostname_ +
-      '/GeisterService/NotifyGamePreparationComplete',
-      request,
-      metadata || {},
-      methodDescriptor_GeisterService_NotifyGamePreparationComplete);
-};
-
-
-/**
- * @const
- * @type {!grpc.web.MethodDescriptor<
  *   !proto.GetGameStateRequest,
  *   !proto.GetGameStateResponse>}
  */

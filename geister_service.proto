@@ -4,6 +4,7 @@ option go_package = "pkg/geister/proto";
 
 service GeisterService{
     rpc Start (StartRequest) returns (StartResponse);
+    rpc NotifyGamePreparationComplete(NotifyGamePreparationCompleteRequest) returns (NotifyGamePreparationCompleteResponse);
     rpc GetGameState (GetGameStateRequest) returns (GetGameStateResponse);
     rpc UpdateGameStateByPlayerMove (UpdateGameStateByPlayerMoveRequest) returns (UpdateGameStateByPlayerMoveResponse);
     rpc UpdateGameStateByCpuMove (UpdateGameStateByCpuMoveRequest) returns (UpdateGameStateByCpuMoveResponse);
@@ -47,6 +48,14 @@ message StartRequest{
 
 message StartResponse{
     Table game_state = 1;
+}
+
+message NotifyGamePreparationCompleteRequest{
+    Table game_state = 1;
+}
+
+message NotifyGamePreparationCompleteResponse{
+    string table_uuid = 1;
 }
 
 message GetGameStateRequest{

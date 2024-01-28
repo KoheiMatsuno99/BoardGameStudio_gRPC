@@ -191,44 +191,6 @@ export namespace StartResponse {
   }
 }
 
-export class NotifyGamePreparationCompleteRequest extends jspb.Message {
-  getGameState(): Table | undefined;
-  setGameState(value?: Table): NotifyGamePreparationCompleteRequest;
-  hasGameState(): boolean;
-  clearGameState(): NotifyGamePreparationCompleteRequest;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): NotifyGamePreparationCompleteRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: NotifyGamePreparationCompleteRequest): NotifyGamePreparationCompleteRequest.AsObject;
-  static serializeBinaryToWriter(message: NotifyGamePreparationCompleteRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): NotifyGamePreparationCompleteRequest;
-  static deserializeBinaryFromReader(message: NotifyGamePreparationCompleteRequest, reader: jspb.BinaryReader): NotifyGamePreparationCompleteRequest;
-}
-
-export namespace NotifyGamePreparationCompleteRequest {
-  export type AsObject = {
-    gameState?: Table.AsObject,
-  }
-}
-
-export class NotifyGamePreparationCompleteResponse extends jspb.Message {
-  getTableUuid(): string;
-  setTableUuid(value: string): NotifyGamePreparationCompleteResponse;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): NotifyGamePreparationCompleteResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: NotifyGamePreparationCompleteResponse): NotifyGamePreparationCompleteResponse.AsObject;
-  static serializeBinaryToWriter(message: NotifyGamePreparationCompleteResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): NotifyGamePreparationCompleteResponse;
-  static deserializeBinaryFromReader(message: NotifyGamePreparationCompleteResponse, reader: jspb.BinaryReader): NotifyGamePreparationCompleteResponse;
-}
-
-export namespace NotifyGamePreparationCompleteResponse {
-  export type AsObject = {
-    tableUuid: string,
-  }
-}
-
 export class GetGameStateRequest extends jspb.Message {
   getTableUuid(): string;
   setTableUuid(value: string): GetGameStateRequest;
