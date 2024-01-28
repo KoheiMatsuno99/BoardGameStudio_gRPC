@@ -137,61 +137,61 @@ proto.GeisterServicePromiseClient.prototype.start =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.NotifyGamePreparationCompleteRequest,
- *   !proto.NotifyGamePreparationCompleteResponse>}
+ *   !proto.NotifyGamePreparationCompletedRequest,
+ *   !proto.NotifyGamePreparationCompletedResponse>}
  */
-const methodDescriptor_GeisterService_NotifyGamePreparationComplete = new grpc.web.MethodDescriptor(
-  '/GeisterService/NotifyGamePreparationComplete',
+const methodDescriptor_GeisterService_NotifyGamePreparationCompleted = new grpc.web.MethodDescriptor(
+  '/GeisterService/NotifyGamePreparationCompleted',
   grpc.web.MethodType.UNARY,
-  proto.NotifyGamePreparationCompleteRequest,
-  proto.NotifyGamePreparationCompleteResponse,
+  proto.NotifyGamePreparationCompletedRequest,
+  proto.NotifyGamePreparationCompletedResponse,
   /**
-   * @param {!proto.NotifyGamePreparationCompleteRequest} request
+   * @param {!proto.NotifyGamePreparationCompletedRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.NotifyGamePreparationCompleteResponse.deserializeBinary
+  proto.NotifyGamePreparationCompletedResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.NotifyGamePreparationCompleteRequest} request The
+ * @param {!proto.NotifyGamePreparationCompletedRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.NotifyGamePreparationCompleteResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.NotifyGamePreparationCompletedResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.NotifyGamePreparationCompleteResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.NotifyGamePreparationCompletedResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.GeisterServiceClient.prototype.notifyGamePreparationComplete =
+proto.GeisterServiceClient.prototype.notifyGamePreparationCompleted =
     function(request, metadata, callback) {
   return this.client_.rpcCall(this.hostname_ +
-      '/GeisterService/NotifyGamePreparationComplete',
+      '/GeisterService/NotifyGamePreparationCompleted',
       request,
       metadata || {},
-      methodDescriptor_GeisterService_NotifyGamePreparationComplete,
+      methodDescriptor_GeisterService_NotifyGamePreparationCompleted,
       callback);
 };
 
 
 /**
- * @param {!proto.NotifyGamePreparationCompleteRequest} request The
+ * @param {!proto.NotifyGamePreparationCompletedRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.NotifyGamePreparationCompleteResponse>}
+ * @return {!Promise<!proto.NotifyGamePreparationCompletedResponse>}
  *     Promise that resolves to the response
  */
-proto.GeisterServicePromiseClient.prototype.notifyGamePreparationComplete =
+proto.GeisterServicePromiseClient.prototype.notifyGamePreparationCompleted =
     function(request, metadata) {
   return this.client_.unaryCall(this.hostname_ +
-      '/GeisterService/NotifyGamePreparationComplete',
+      '/GeisterService/NotifyGamePreparationCompleted',
       request,
       metadata || {},
-      methodDescriptor_GeisterService_NotifyGamePreparationComplete);
+      methodDescriptor_GeisterService_NotifyGamePreparationCompleted);
 };
 
 
@@ -259,33 +259,33 @@ proto.GeisterServicePromiseClient.prototype.getGameState =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.UpdateGameStateByPlayerMoveRequest,
- *   !proto.UpdateGameStateByPlayerMoveResponse>}
+ *   !proto.UpdateGameStateByPlayerMovementRequest,
+ *   !proto.UpdateGameStateByPlayerMovementResponse>}
  */
 const methodDescriptor_GeisterService_UpdateGameStateByPlayerMove = new grpc.web.MethodDescriptor(
   '/GeisterService/UpdateGameStateByPlayerMove',
   grpc.web.MethodType.UNARY,
-  proto.UpdateGameStateByPlayerMoveRequest,
-  proto.UpdateGameStateByPlayerMoveResponse,
+  proto.UpdateGameStateByPlayerMovementRequest,
+  proto.UpdateGameStateByPlayerMovementResponse,
   /**
-   * @param {!proto.UpdateGameStateByPlayerMoveRequest} request
+   * @param {!proto.UpdateGameStateByPlayerMovementRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.UpdateGameStateByPlayerMoveResponse.deserializeBinary
+  proto.UpdateGameStateByPlayerMovementResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.UpdateGameStateByPlayerMoveRequest} request The
+ * @param {!proto.UpdateGameStateByPlayerMovementRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.UpdateGameStateByPlayerMoveResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.UpdateGameStateByPlayerMovementResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.UpdateGameStateByPlayerMoveResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.UpdateGameStateByPlayerMovementResponse>|undefined}
  *     The XHR Node Readable Stream
  */
 proto.GeisterServiceClient.prototype.updateGameStateByPlayerMove =
@@ -300,11 +300,11 @@ proto.GeisterServiceClient.prototype.updateGameStateByPlayerMove =
 
 
 /**
- * @param {!proto.UpdateGameStateByPlayerMoveRequest} request The
+ * @param {!proto.UpdateGameStateByPlayerMovementRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.UpdateGameStateByPlayerMoveResponse>}
+ * @return {!Promise<!proto.UpdateGameStateByPlayerMovementResponse>}
  *     Promise that resolves to the response
  */
 proto.GeisterServicePromiseClient.prototype.updateGameStateByPlayerMove =
@@ -320,33 +320,33 @@ proto.GeisterServicePromiseClient.prototype.updateGameStateByPlayerMove =
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
- *   !proto.UpdateGameStateByCpuMoveRequest,
- *   !proto.UpdateGameStateByCpuMoveResponse>}
+ *   !proto.UpdateGameStateByCpuMovementRequest,
+ *   !proto.UpdateGameStateByCpuMovementResponse>}
  */
 const methodDescriptor_GeisterService_UpdateGameStateByCpuMove = new grpc.web.MethodDescriptor(
   '/GeisterService/UpdateGameStateByCpuMove',
   grpc.web.MethodType.UNARY,
-  proto.UpdateGameStateByCpuMoveRequest,
-  proto.UpdateGameStateByCpuMoveResponse,
+  proto.UpdateGameStateByCpuMovementRequest,
+  proto.UpdateGameStateByCpuMovementResponse,
   /**
-   * @param {!proto.UpdateGameStateByCpuMoveRequest} request
+   * @param {!proto.UpdateGameStateByCpuMovementRequest} request
    * @return {!Uint8Array}
    */
   function(request) {
     return request.serializeBinary();
   },
-  proto.UpdateGameStateByCpuMoveResponse.deserializeBinary
+  proto.UpdateGameStateByCpuMovementResponse.deserializeBinary
 );
 
 
 /**
- * @param {!proto.UpdateGameStateByCpuMoveRequest} request The
+ * @param {!proto.UpdateGameStateByCpuMovementRequest} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.UpdateGameStateByCpuMoveResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.UpdateGameStateByCpuMovementResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.UpdateGameStateByCpuMoveResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.UpdateGameStateByCpuMovementResponse>|undefined}
  *     The XHR Node Readable Stream
  */
 proto.GeisterServiceClient.prototype.updateGameStateByCpuMove =
@@ -361,11 +361,11 @@ proto.GeisterServiceClient.prototype.updateGameStateByCpuMove =
 
 
 /**
- * @param {!proto.UpdateGameStateByCpuMoveRequest} request The
+ * @param {!proto.UpdateGameStateByCpuMovementRequest} request The
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.UpdateGameStateByCpuMoveResponse>}
+ * @return {!Promise<!proto.UpdateGameStateByCpuMovementResponse>}
  *     Promise that resolves to the response
  */
 proto.GeisterServicePromiseClient.prototype.updateGameStateByCpuMove =

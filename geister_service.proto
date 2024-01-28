@@ -4,10 +4,10 @@ option go_package = "pkg/geister/proto";
 
 service GeisterService{
     rpc Start (StartRequest) returns (StartResponse);
-    rpc NotifyGamePreparationComplete(NotifyGamePreparationCompleteRequest) returns (NotifyGamePreparationCompleteResponse);
+    rpc NotifyGamePreparationCompleted(NotifyGamePreparationCompletedRequest) returns (NotifyGamePreparationCompletedResponse);
     rpc GetGameState (GetGameStateRequest) returns (GetGameStateResponse);
-    rpc UpdateGameStateByPlayerMove (UpdateGameStateByPlayerMoveRequest) returns (UpdateGameStateByPlayerMoveResponse);
-    rpc UpdateGameStateByCpuMove (UpdateGameStateByCpuMoveRequest) returns (UpdateGameStateByCpuMoveResponse);
+    rpc UpdateGameStateByPlayerMove (UpdateGameStateByPlayerMovementRequest) returns (UpdateGameStateByPlayerMovementResponse);
+    rpc UpdateGameStateByCpuMove (UpdateGameStateByCpuMovementRequest) returns (UpdateGameStateByCpuMovementResponse);
     rpc DeleteGameStateWhenGameIsOver (DeleteGameStateWhenGameIsOverRequest) returns (DeleteGameStateWhenGameIsOverResponse);
 }
 
@@ -50,11 +50,13 @@ message StartResponse{
     Table game_state = 1;
 }
 
-message NotifyGamePreparationCompleteRequest{
-    Table game_state = 1;
+message NotifyGamePreparationCompletedRequest{
+    string table_uuid = 1;
+    repeated Player players = 2;
+    repeated BlockRow board = 3;
 }
 
-message NotifyGamePreparationCompleteResponse{
+message NotifyGamePreparationCompletedResponse{
     
 }
 
@@ -66,21 +68,21 @@ message GetGameStateResponse{
     Table game_state = 1;
 }
 
-message UpdateGameStateByPlayerMoveRequest{
+message UpdateGameStateByPlayerMovementRequest{
     string table_uuid = 1;
     string piece_key = 2;
     Block dest = 3;
 }
 
-message UpdateGameStateByPlayerMoveResponse{
+message UpdateGameStateByPlayerMovementResponse{
 
 }
 
-message UpdateGameStateByCpuMoveRequest{
+message UpdateGameStateByCpuMovementRequest{
     string table_uuid = 1;
 }
 
-message UpdateGameStateByCpuMoveResponse{
+message UpdateGameStateByCpuMovementResponse{
 
 }
 

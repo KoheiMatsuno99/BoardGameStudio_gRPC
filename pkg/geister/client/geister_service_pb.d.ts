@@ -191,36 +191,46 @@ export namespace StartResponse {
   }
 }
 
-export class NotifyGamePreparationCompleteRequest extends jspb.Message {
-  getGameState(): Table | undefined;
-  setGameState(value?: Table): NotifyGamePreparationCompleteRequest;
-  hasGameState(): boolean;
-  clearGameState(): NotifyGamePreparationCompleteRequest;
+export class NotifyGamePreparationCompletedRequest extends jspb.Message {
+  getTableUuid(): string;
+  setTableUuid(value: string): NotifyGamePreparationCompletedRequest;
+
+  getPlayersList(): Array<Player>;
+  setPlayersList(value: Array<Player>): NotifyGamePreparationCompletedRequest;
+  clearPlayersList(): NotifyGamePreparationCompletedRequest;
+  addPlayers(value?: Player, index?: number): Player;
+
+  getBoardList(): Array<BlockRow>;
+  setBoardList(value: Array<BlockRow>): NotifyGamePreparationCompletedRequest;
+  clearBoardList(): NotifyGamePreparationCompletedRequest;
+  addBoard(value?: BlockRow, index?: number): BlockRow;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): NotifyGamePreparationCompleteRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: NotifyGamePreparationCompleteRequest): NotifyGamePreparationCompleteRequest.AsObject;
-  static serializeBinaryToWriter(message: NotifyGamePreparationCompleteRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): NotifyGamePreparationCompleteRequest;
-  static deserializeBinaryFromReader(message: NotifyGamePreparationCompleteRequest, reader: jspb.BinaryReader): NotifyGamePreparationCompleteRequest;
+  toObject(includeInstance?: boolean): NotifyGamePreparationCompletedRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: NotifyGamePreparationCompletedRequest): NotifyGamePreparationCompletedRequest.AsObject;
+  static serializeBinaryToWriter(message: NotifyGamePreparationCompletedRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): NotifyGamePreparationCompletedRequest;
+  static deserializeBinaryFromReader(message: NotifyGamePreparationCompletedRequest, reader: jspb.BinaryReader): NotifyGamePreparationCompletedRequest;
 }
 
-export namespace NotifyGamePreparationCompleteRequest {
+export namespace NotifyGamePreparationCompletedRequest {
   export type AsObject = {
-    gameState?: Table.AsObject,
+    tableUuid: string,
+    playersList: Array<Player.AsObject>,
+    boardList: Array<BlockRow.AsObject>,
   }
 }
 
-export class NotifyGamePreparationCompleteResponse extends jspb.Message {
+export class NotifyGamePreparationCompletedResponse extends jspb.Message {
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): NotifyGamePreparationCompleteResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: NotifyGamePreparationCompleteResponse): NotifyGamePreparationCompleteResponse.AsObject;
-  static serializeBinaryToWriter(message: NotifyGamePreparationCompleteResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): NotifyGamePreparationCompleteResponse;
-  static deserializeBinaryFromReader(message: NotifyGamePreparationCompleteResponse, reader: jspb.BinaryReader): NotifyGamePreparationCompleteResponse;
+  toObject(includeInstance?: boolean): NotifyGamePreparationCompletedResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: NotifyGamePreparationCompletedResponse): NotifyGamePreparationCompletedResponse.AsObject;
+  static serializeBinaryToWriter(message: NotifyGamePreparationCompletedResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): NotifyGamePreparationCompletedResponse;
+  static deserializeBinaryFromReader(message: NotifyGamePreparationCompletedResponse, reader: jspb.BinaryReader): NotifyGamePreparationCompletedResponse;
 }
 
-export namespace NotifyGamePreparationCompleteResponse {
+export namespace NotifyGamePreparationCompletedResponse {
   export type AsObject = {
   }
 }
@@ -263,27 +273,27 @@ export namespace GetGameStateResponse {
   }
 }
 
-export class UpdateGameStateByPlayerMoveRequest extends jspb.Message {
+export class UpdateGameStateByPlayerMovementRequest extends jspb.Message {
   getTableUuid(): string;
-  setTableUuid(value: string): UpdateGameStateByPlayerMoveRequest;
+  setTableUuid(value: string): UpdateGameStateByPlayerMovementRequest;
 
   getPieceKey(): string;
-  setPieceKey(value: string): UpdateGameStateByPlayerMoveRequest;
+  setPieceKey(value: string): UpdateGameStateByPlayerMovementRequest;
 
   getDest(): Block | undefined;
-  setDest(value?: Block): UpdateGameStateByPlayerMoveRequest;
+  setDest(value?: Block): UpdateGameStateByPlayerMovementRequest;
   hasDest(): boolean;
-  clearDest(): UpdateGameStateByPlayerMoveRequest;
+  clearDest(): UpdateGameStateByPlayerMovementRequest;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): UpdateGameStateByPlayerMoveRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: UpdateGameStateByPlayerMoveRequest): UpdateGameStateByPlayerMoveRequest.AsObject;
-  static serializeBinaryToWriter(message: UpdateGameStateByPlayerMoveRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): UpdateGameStateByPlayerMoveRequest;
-  static deserializeBinaryFromReader(message: UpdateGameStateByPlayerMoveRequest, reader: jspb.BinaryReader): UpdateGameStateByPlayerMoveRequest;
+  toObject(includeInstance?: boolean): UpdateGameStateByPlayerMovementRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateGameStateByPlayerMovementRequest): UpdateGameStateByPlayerMovementRequest.AsObject;
+  static serializeBinaryToWriter(message: UpdateGameStateByPlayerMovementRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateGameStateByPlayerMovementRequest;
+  static deserializeBinaryFromReader(message: UpdateGameStateByPlayerMovementRequest, reader: jspb.BinaryReader): UpdateGameStateByPlayerMovementRequest;
 }
 
-export namespace UpdateGameStateByPlayerMoveRequest {
+export namespace UpdateGameStateByPlayerMovementRequest {
   export type AsObject = {
     tableUuid: string,
     pieceKey: string,
@@ -291,48 +301,48 @@ export namespace UpdateGameStateByPlayerMoveRequest {
   }
 }
 
-export class UpdateGameStateByPlayerMoveResponse extends jspb.Message {
+export class UpdateGameStateByPlayerMovementResponse extends jspb.Message {
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): UpdateGameStateByPlayerMoveResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: UpdateGameStateByPlayerMoveResponse): UpdateGameStateByPlayerMoveResponse.AsObject;
-  static serializeBinaryToWriter(message: UpdateGameStateByPlayerMoveResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): UpdateGameStateByPlayerMoveResponse;
-  static deserializeBinaryFromReader(message: UpdateGameStateByPlayerMoveResponse, reader: jspb.BinaryReader): UpdateGameStateByPlayerMoveResponse;
+  toObject(includeInstance?: boolean): UpdateGameStateByPlayerMovementResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateGameStateByPlayerMovementResponse): UpdateGameStateByPlayerMovementResponse.AsObject;
+  static serializeBinaryToWriter(message: UpdateGameStateByPlayerMovementResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateGameStateByPlayerMovementResponse;
+  static deserializeBinaryFromReader(message: UpdateGameStateByPlayerMovementResponse, reader: jspb.BinaryReader): UpdateGameStateByPlayerMovementResponse;
 }
 
-export namespace UpdateGameStateByPlayerMoveResponse {
+export namespace UpdateGameStateByPlayerMovementResponse {
   export type AsObject = {
   }
 }
 
-export class UpdateGameStateByCpuMoveRequest extends jspb.Message {
+export class UpdateGameStateByCpuMovementRequest extends jspb.Message {
   getTableUuid(): string;
-  setTableUuid(value: string): UpdateGameStateByCpuMoveRequest;
+  setTableUuid(value: string): UpdateGameStateByCpuMovementRequest;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): UpdateGameStateByCpuMoveRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: UpdateGameStateByCpuMoveRequest): UpdateGameStateByCpuMoveRequest.AsObject;
-  static serializeBinaryToWriter(message: UpdateGameStateByCpuMoveRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): UpdateGameStateByCpuMoveRequest;
-  static deserializeBinaryFromReader(message: UpdateGameStateByCpuMoveRequest, reader: jspb.BinaryReader): UpdateGameStateByCpuMoveRequest;
+  toObject(includeInstance?: boolean): UpdateGameStateByCpuMovementRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateGameStateByCpuMovementRequest): UpdateGameStateByCpuMovementRequest.AsObject;
+  static serializeBinaryToWriter(message: UpdateGameStateByCpuMovementRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateGameStateByCpuMovementRequest;
+  static deserializeBinaryFromReader(message: UpdateGameStateByCpuMovementRequest, reader: jspb.BinaryReader): UpdateGameStateByCpuMovementRequest;
 }
 
-export namespace UpdateGameStateByCpuMoveRequest {
+export namespace UpdateGameStateByCpuMovementRequest {
   export type AsObject = {
     tableUuid: string,
   }
 }
 
-export class UpdateGameStateByCpuMoveResponse extends jspb.Message {
+export class UpdateGameStateByCpuMovementResponse extends jspb.Message {
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): UpdateGameStateByCpuMoveResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: UpdateGameStateByCpuMoveResponse): UpdateGameStateByCpuMoveResponse.AsObject;
-  static serializeBinaryToWriter(message: UpdateGameStateByCpuMoveResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): UpdateGameStateByCpuMoveResponse;
-  static deserializeBinaryFromReader(message: UpdateGameStateByCpuMoveResponse, reader: jspb.BinaryReader): UpdateGameStateByCpuMoveResponse;
+  toObject(includeInstance?: boolean): UpdateGameStateByCpuMovementResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateGameStateByCpuMovementResponse): UpdateGameStateByCpuMovementResponse.AsObject;
+  static serializeBinaryToWriter(message: UpdateGameStateByCpuMovementResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateGameStateByCpuMovementResponse;
+  static deserializeBinaryFromReader(message: UpdateGameStateByCpuMovementResponse, reader: jspb.BinaryReader): UpdateGameStateByCpuMovementResponse;
 }
 
-export namespace UpdateGameStateByCpuMoveResponse {
+export namespace UpdateGameStateByCpuMovementResponse {
   export type AsObject = {
   }
 }

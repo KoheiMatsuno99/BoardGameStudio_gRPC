@@ -15,12 +15,12 @@ export class GeisterServiceClient {
                response: geister_service_pb.StartResponse) => void
   ): grpcWeb.ClientReadableStream<geister_service_pb.StartResponse>;
 
-  notifyGamePreparationComplete(
-    request: geister_service_pb.NotifyGamePreparationCompleteRequest,
+  notifyGamePreparationCompleted(
+    request: geister_service_pb.NotifyGamePreparationCompletedRequest,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.RpcError,
-               response: geister_service_pb.NotifyGamePreparationCompleteResponse) => void
-  ): grpcWeb.ClientReadableStream<geister_service_pb.NotifyGamePreparationCompleteResponse>;
+               response: geister_service_pb.NotifyGamePreparationCompletedResponse) => void
+  ): grpcWeb.ClientReadableStream<geister_service_pb.NotifyGamePreparationCompletedResponse>;
 
   getGameState(
     request: geister_service_pb.GetGameStateRequest,
@@ -30,18 +30,18 @@ export class GeisterServiceClient {
   ): grpcWeb.ClientReadableStream<geister_service_pb.GetGameStateResponse>;
 
   updateGameStateByPlayerMove(
-    request: geister_service_pb.UpdateGameStateByPlayerMoveRequest,
+    request: geister_service_pb.UpdateGameStateByPlayerMovementRequest,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.RpcError,
-               response: geister_service_pb.UpdateGameStateByPlayerMoveResponse) => void
-  ): grpcWeb.ClientReadableStream<geister_service_pb.UpdateGameStateByPlayerMoveResponse>;
+               response: geister_service_pb.UpdateGameStateByPlayerMovementResponse) => void
+  ): grpcWeb.ClientReadableStream<geister_service_pb.UpdateGameStateByPlayerMovementResponse>;
 
   updateGameStateByCpuMove(
-    request: geister_service_pb.UpdateGameStateByCpuMoveRequest,
+    request: geister_service_pb.UpdateGameStateByCpuMovementRequest,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.RpcError,
-               response: geister_service_pb.UpdateGameStateByCpuMoveResponse) => void
-  ): grpcWeb.ClientReadableStream<geister_service_pb.UpdateGameStateByCpuMoveResponse>;
+               response: geister_service_pb.UpdateGameStateByCpuMovementResponse) => void
+  ): grpcWeb.ClientReadableStream<geister_service_pb.UpdateGameStateByCpuMovementResponse>;
 
   deleteGameStateWhenGameIsOver(
     request: geister_service_pb.DeleteGameStateWhenGameIsOverRequest,
@@ -62,10 +62,10 @@ export class GeisterServicePromiseClient {
     metadata?: grpcWeb.Metadata
   ): Promise<geister_service_pb.StartResponse>;
 
-  notifyGamePreparationComplete(
-    request: geister_service_pb.NotifyGamePreparationCompleteRequest,
+  notifyGamePreparationCompleted(
+    request: geister_service_pb.NotifyGamePreparationCompletedRequest,
     metadata?: grpcWeb.Metadata
-  ): Promise<geister_service_pb.NotifyGamePreparationCompleteResponse>;
+  ): Promise<geister_service_pb.NotifyGamePreparationCompletedResponse>;
 
   getGameState(
     request: geister_service_pb.GetGameStateRequest,
@@ -73,14 +73,14 @@ export class GeisterServicePromiseClient {
   ): Promise<geister_service_pb.GetGameStateResponse>;
 
   updateGameStateByPlayerMove(
-    request: geister_service_pb.UpdateGameStateByPlayerMoveRequest,
+    request: geister_service_pb.UpdateGameStateByPlayerMovementRequest,
     metadata?: grpcWeb.Metadata
-  ): Promise<geister_service_pb.UpdateGameStateByPlayerMoveResponse>;
+  ): Promise<geister_service_pb.UpdateGameStateByPlayerMovementResponse>;
 
   updateGameStateByCpuMove(
-    request: geister_service_pb.UpdateGameStateByCpuMoveRequest,
+    request: geister_service_pb.UpdateGameStateByCpuMovementRequest,
     metadata?: grpcWeb.Metadata
-  ): Promise<geister_service_pb.UpdateGameStateByCpuMoveResponse>;
+  ): Promise<geister_service_pb.UpdateGameStateByCpuMovementResponse>;
 
   deleteGameStateWhenGameIsOver(
     request: geister_service_pb.DeleteGameStateWhenGameIsOverRequest,
